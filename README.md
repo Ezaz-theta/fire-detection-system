@@ -22,6 +22,6 @@ The pretrained <b>YOLOv3</b> model is available for download via the link below.
  1. Joseph Redmon and Ali Farhadi, YOLOv3: An Incremental Improvement <br>
  <a href="https://arxiv.org/abs/1804.02767" >https://arxiv.org/abs/1804.02767</a> <br>
  
- 2. Moses, and John Olafenwa. (2018–). ImageAI, an open source python library built to empower developers to build applications and systems with selfcontained Computer Vision capabilities
+ 2. Moses, and John Olafenwa. (2018–). ImageAI, an open source python library built to empower developers to build applications and systems with selfcontained Computer Vision capabilities <br>
  <a href="https://github.com/OlafenwaMoses/ImageAI" >https://github.com/OlafenwaMoses/ImageAI</a> <br> <br>
  
