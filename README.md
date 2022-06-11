@@ -1,4 +1,4 @@
-# fire-detection-system
+# Fire-Detection-System
 Fire Detection System using Image processing
 
 The aim of the project is to early detection of fire apart from preventive measures to reduce the losses due to hazardous fire.
