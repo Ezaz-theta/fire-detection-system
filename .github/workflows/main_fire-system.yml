@@ -61,3 +61,5 @@ jobs:
           app-name: 'fire-system'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2D86C603109141EF91964E7FA29D4A77 }}
+        run: |
+          python -m streamlit run ./main.py --server.port 8000 --server.address 0.0.0.0
