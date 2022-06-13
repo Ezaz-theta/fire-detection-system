@@ -5,6 +5,6 @@ Pillow==9.1.1
 scipy==1.4.1
 h5py==2.10.0
 matplotlib==3.3.2
-opencv-python==4.5.4.58
+opencv-python-headless
 keras-resnet==0.2.0
 streamlit
