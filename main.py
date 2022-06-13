@@ -1,4 +1,3 @@
-from cv2 import COLOR_BGR2RGB
 import streamlit as st
 import pandas as pd
 import cv2
