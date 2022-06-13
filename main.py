@@ -3,7 +3,6 @@ import pandas as pd
 from PIL import Image, ImageEnhance
 import numpy as np
 import os
-import device
 import time ,sys
 import cv2
 import numpy as np
