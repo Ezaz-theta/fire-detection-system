@@ -16,8 +16,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - checkout: self
-        lfs: true
+        with:
+          lfs: true
+      - name: Checkout LFS objects
+        run: git lfs checkout
 
       - name: Set up Python version
         uses: actions/setup-python@v1
