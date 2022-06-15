@@ -16,6 +16,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - checkout: self
+          lfs: true
 
       - name: Set up Python version
         uses: actions/setup-python@v1
