@@ -46,7 +46,7 @@ def object_detection_video():
         with open("uploaded_video.mp4", mode='wb') as f:
             f.write(uploaded_video.read()) # save video to disk
 
-        st_video = open(vid,'rb')
+        st_video = open("uploaded_video.mp4",'rb')
         video_bytes = st_video.read()
         st.write("Uploaded Video:")
         st.video(video_bytes)
@@ -67,7 +67,7 @@ def object_detection_video():
                 det_img,detections= fn.detect_from_image(image,"array")
                 image_placeholder.image(det_img)
 
-        os.remove("uploaded_video.mp4")
+    os.remove("uploaded_video.mp4")
 
 def main():
     new_title = '<p style="font-size: 42px;font-weight:bolder">Fire Detection System Using Image Processing</p>'

@@ -9,6 +9,27 @@ In the process, for the fire images in the video stream, the suspected fire area
 
 <br>
 
+<img src="fire.jpg">
+
+<br>
+
+<b>GUI:</b>
+Developed using Streamlit
+<br>
+<img src="gui.png">
+
+<br>
+
+<b>Deployment:</b>
+Deployed using Azure App Service
+
+App is deployed on azure app service and is using pipeline for updating to latest push available on GitHub.
+<img src="pipeline.png">
+
+
+<br>
+
+
 The pretrained <b>YOLOv3</b> model is available for download via the link below. <br><br> 
   <b><a href="https://github.com/OlafenwaMoses/FireNET/releases/download/v1.0/detection_model-ex-33--loss-4.97.h5" >https://github.com/OlafenwaMoses/FireNET/releases/download/v1.0/detection_model-ex-33--loss-4.97.h5</a></b><br>
   <br>
