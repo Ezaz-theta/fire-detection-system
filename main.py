@@ -1,13 +1,9 @@
+from fileinput import close
 import streamlit as st
-import pandas as pd
-from PIL import Image, ImageEnhance
+from PIL import Image
 import numpy as np
 import os
-import time ,sys
 import cv2
-import numpy as np
-import time
-import sys
 import fire_net as fn
 
 def object_detection_image():
@@ -17,20 +13,21 @@ def object_detection_image():
     """)
     file = st.file_uploader('Upload Image', type = ['jpg','png','jpeg'])
     if file!= None:
-        file.name="test."+str(file.type[6:])
-        img1 = Image.open(file)
-        with open("./"+file.name,"wb") as f:
-            f.write(file.getbuffer())
-        img2 = np.array(img1)
-        det_img,detections = fn.detect_from_image(file.name,"file")
-        st.write("Uploaded Image:")
-        st.image(img1)
-        st.write("Detections:")
-        if(len(detections) != 0):
-            st.image(cv2.cvtColor(det_img,cv2.COLOR_BGR2RGB))
-        else:
-            st.write("No Fire Detected")
-        os.remove(file.name)
+        with st.spinner('Scanning...'):
+            file.name="test."+str(file.type[6:])
+            img1 = Image.open(file)
+            with open("./"+file.name,"wb") as f:
+                f.write(file.getbuffer())
+            img2 = np.array(img1)
+            det_img,detections = fn.detect_from_image(file.name,"file")
+            st.write("Uploaded Image:")
+            st.image(img1)
+            st.write("Detections:")
+            if(len(detections) != 0):
+                st.image(cv2.cvtColor(det_img,cv2.COLOR_BGR2RGB))
+            else:
+                st.write("No Fire Detected")
+            os.remove(file.name)
 
 def object_detection_video():
     #object_detection_video.has_beenCalled = True
@@ -39,35 +36,45 @@ def object_detection_video():
     This feature takes in a video and outputs the video with bounding boxes created around the objects in the video 
     """
     )
-    uploaded_video = st.file_uploader("Upload Video", type = ['mp4','mpeg','mov'])
+    
+    uploaded_video = st.file_uploader("Upload Video", type = ['mp4','mpeg','mov','avi'])
     if uploaded_video != None:
         
-        vid = uploaded_video.name
-        with open("uploaded_video.mp4", mode='wb') as f:
+        vid = 'uploaded_video.mp4'
+        with open(vid, mode='wb') as f:
             f.write(uploaded_video.read()) # save video to disk
-
-        st_video = open("uploaded_video.mp4",'rb')
+            f.close()
+        
+        st_video = open(vid,'rb')
         video_bytes = st_video.read()
+        st_video.close()
         st.write("Uploaded Video:")
-        st.video(video_bytes)
+        videoPlayer = st.video(video_bytes)
         #video_file = 'street.mp4'
         cap = cv2.VideoCapture(vid)
-        _, image = cap.read()
-        h, w = image.shape[:2]
+        #_, image = cap.read()
+        #h, w = image.shape[:2]
         #out = cv2.VideoWriter(output_name, cv2.VideoWriter_fourcc#(*'avc3'), fps, insize)
         
-        st.write("Output:")
+        msg = st.empty()
+        msg.write("Output (wait for below output):")
         image_placeholder = st.empty()
+        status = True
         
-        count = 0
-        while True:
+        if st.button('End'):
+            status = False
+            msg.write("Stopped")
+            cap.release()
+            
+        while status:
             _, image = cap.read()
             if _ != False:
-                h, w = image.shape[:2]
+                #h, w = image.shape[:2]
                 det_img,detections= fn.detect_from_image(image,"array")
-                image_placeholder.image(det_img)
-
-    os.remove("uploaded_video.mp4")
+                image_placeholder.image(cv2.cvtColor(det_img,cv2.COLOR_BGR2RGB))
+        
+        os.remove(vid)
+        
 
 def main():
     new_title = '<p style="font-size: 42px;font-weight:bolder">Fire Detection System Using Image Processing</p>'
